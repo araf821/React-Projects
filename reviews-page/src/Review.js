@@ -4,9 +4,8 @@ import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Review = () => {
   const [index, setIndex] = useState(Math.floor(Math.random() * people.length));
-  const [reviews, setReviews] = useState(people);
 
-  const { name, job, image, text } = reviews[index];
+  const { name, job, image, text } = people[index];
 
   function randomizeList() {
     setIndex(Math.floor(Math.random() * people.length));
@@ -15,7 +14,7 @@ const Review = () => {
   function decrement() {
     setIndex((index) => {
       let newIndex = 0;
-      index === 0 ? (newIndex = reviews.length - 1) : (newIndex = index - 1);
+      index === 0 ? (newIndex = people.length - 1) : (newIndex = index - 1);
       return newIndex;
     });
   }
@@ -23,7 +22,7 @@ const Review = () => {
   function increment() {
     setIndex((index) => {
       let newIndex = 0;
-      index === reviews.length - 1 ? (newIndex = 0) : (newIndex = index + 1);
+      index === people.length - 1 ? (newIndex = 0) : (newIndex = index + 1);
       return newIndex;
     });
   }
