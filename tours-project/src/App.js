@@ -25,6 +25,11 @@ function App() {
     fetchData();
   }, []);
 
+  const deleteItem = (id) => {
+    const newData = data.filter((tour) => tour.id !== id);
+    setData(newData);
+  };
+
   if (loading) {
     return <Loading />;
   }
@@ -40,7 +45,7 @@ function App() {
         <div className="underline"></div>
       </div>
 
-      <Tours data={data} />
+      <Tours data={data} deleteItem={deleteItem} />
     </main>
   );
 }
