@@ -4,8 +4,13 @@ import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Review = () => {
   const [reviews, setReviews] = useState(people);
+  const [currentReview, setCurrentReview] = useState(
+    reviews[Math.floor(Math.random() * reviews.length)]
+  );
 
-  const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
+  function randomizeList() {
+    setCurrentReview(reviews[Math.floor(Math.random() * reviews.length)]);
+  }
 
   return (
     <main>
@@ -21,8 +26,8 @@ const Review = () => {
           <div className="img-container">
             <img
               className="person-img"
-              src={randomReview.image}
-              alt={randomReview.name}
+              src={currentReview.image}
+              alt={currentReview.name}
             />
             {/* ---------- QUOTATION ICON --------- */}
             <div className="quote-icon">
@@ -31,13 +36,20 @@ const Review = () => {
           </div>
 
           {/* REVIEW INFO */}
-          <h4 className="author">{randomReview.name}</h4>
-          <p className="job">{randomReview.job}</p>
-          <p className="info">{randomReview.text}</p>
-          
+          <h4 className="author">{currentReview.name}</h4>
+          <p className="job">{currentReview.job}</p>
+          <p className="info">{currentReview.text}</p>
+
           {/* PREV & NEXT BUTTONS */}
           <FaChevronLeft className="prev-btn" />
           <FaChevronRight className="next-btn" />
+
+          {/* RANDOMIZE BUTTON */}
+          <div>
+            <button className="random-btn" onClick={randomizeList}>
+              Randomize
+            </button>
+          </div>
         </article>
       </div>
     </main>
