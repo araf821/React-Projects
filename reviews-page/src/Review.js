@@ -3,14 +3,20 @@ import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Review = () => {
+  const [index, setIndex] = useState(Math.floor(Math.random() * people.length));
   const [reviews, setReviews] = useState(people);
-  const [currentReview, setCurrentReview] = useState(
-    reviews[Math.floor(Math.random() * reviews.length)]
-  );
+
+  const { id, name, job, image, text } = reviews[index];
 
   function randomizeList() {
-    setCurrentReview(reviews[Math.floor(Math.random() * reviews.length)]);
+    setIndex(Math.floor(Math.random() * people.length));
   }
+
+  function decrement() {
+    //
+  }
+
+  function increment() {}
 
   return (
     <main>
@@ -24,11 +30,7 @@ const Review = () => {
         <article className="review">
           {/* ---------- IMAGE CONTAINER ----------- */}
           <div className="img-container">
-            <img
-              className="person-img"
-              src={currentReview.image}
-              alt={currentReview.name}
-            />
+            <img className="person-img" src={image} alt={name} />
             {/* ---------- QUOTATION ICON --------- */}
             <div className="quote-icon">
               <FaQuoteRight />
@@ -36,13 +38,13 @@ const Review = () => {
           </div>
 
           {/* REVIEW INFO */}
-          <h4 className="author">{currentReview.name}</h4>
-          <p className="job">{currentReview.job}</p>
-          <p className="info">{currentReview.text}</p>
+          <h4 className="author">{name}</h4>
+          <p className="job">{job}</p>
+          <p className="info">{text}</p>
 
           {/* PREV & NEXT BUTTONS */}
-          <FaChevronLeft className="prev-btn" />
-          <FaChevronRight className="next-btn" />
+          <FaChevronLeft className="prev-btn" onClick={decrement} />
+          <FaChevronRight className="next-btn" onClick={increment} />
 
           {/* RANDOMIZE BUTTON */}
           <div>
