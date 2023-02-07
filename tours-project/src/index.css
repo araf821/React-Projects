@@ -154,14 +154,14 @@ Tours
 main {
   width: 90vw;
   max-width: var(--fixed-width);
-  margin: 5rem auto;
+  margin: 2rem auto;
 }
 .loading {
   text-align: center;
 }
 .title {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 .underline {
   width: 6rem;
