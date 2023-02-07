@@ -1,35 +1,43 @@
-import React, { useState, useEffect } from 'react'
-import Loading from './Loading'
-import Tours from './Tours'
+import React, { useState, useEffect } from "react";
+import Loading from "./Loading";
+import Tours from "./Tours";
 
-const url = 'https://course-api.com/react-tours-project'
+const url = "https://course-api.com/react-tours-project";
 function App() {
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(url)
-        const tourList = await response.json()
-        setLoading(false)
+        const response = await fetch(url);
+        const tourList = await response.json();
+        setLoading(false);
+        setData(tourList);
         console.log(tourList);
       } catch (error) {
-        console.log(error);
+        setLoading(false)
+        setError(true)
       }
-    }
-    fetchData()
-  }, [])
+    };
+    fetchData();
+  }, []);
 
   if (loading) {
-    return <h2>Loading Tours...</h2>
+    return <Loading />;
   }
 
   if (error) {
-    return <h2>404 - Resource Not Found :(</h2>
+    return <h2>404 - Resource Not Found :(</h2>;
   }
 
-  return <h2>Tours Project Setup</h2>
+  return (
+    <main>
+      <h1 className="title underline">Our Tours</h1>
+    </main>
+  );
 }
 
-export default App
+export default App;
