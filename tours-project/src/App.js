@@ -8,6 +8,7 @@ function App() {
   const [error, setError] = useState(false);
 
   const [data, setData] = useState([]);
+  const [savedData, setSavedData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +17,7 @@ function App() {
         const tourList = await response.json();
         setLoading(false);
         setData(tourList);
+        setSavedData(tourList)
         console.log(tourList);
       } catch (error) {
         setLoading(false);
@@ -35,7 +37,7 @@ function App() {
   }
 
   if (error) {
-    return <h2>404 - Resource Not Found :(</h2>;
+    return <h2 className="title">404 - Resource Not Found :(</h2>;
   }
 
   return (
@@ -44,8 +46,13 @@ function App() {
         <h2>Our Tours</h2>
         <div className="underline"></div>
       </div>
-
-      <Tours data={data} deleteItem={deleteItem} />
+      {data.length ? (
+        <Tours data={data} deleteItem={deleteItem} />
+      ) : (
+        <button className="btn refresh-btn" onClick={() => setData(savedData)}>
+          Refresh Tours
+        </button>
+      )}
     </main>
   );
 }
