@@ -18,8 +18,8 @@ function App() {
         setData(tourList);
         console.log(tourList);
       } catch (error) {
-        setLoading(false)
-        setError(true)
+        setLoading(false);
+        setError(true);
       }
     };
     fetchData();
@@ -35,7 +35,12 @@ function App() {
 
   return (
     <main>
-      <h1 className="title underline">Our Tours</h1>
+      <div className="title">
+        <h2>Our Tours</h2>
+        <div className="underline"></div>
+      </div>
+
+      <Tours data={data} />
     </main>
   );
 }
