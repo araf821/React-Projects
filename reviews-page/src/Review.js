@@ -6,17 +6,27 @@ const Review = () => {
   const [index, setIndex] = useState(Math.floor(Math.random() * people.length));
   const [reviews, setReviews] = useState(people);
 
-  const { id, name, job, image, text } = reviews[index];
+  const { name, job, image, text } = reviews[index];
 
   function randomizeList() {
     setIndex(Math.floor(Math.random() * people.length));
   }
 
   function decrement() {
-    //
+    setIndex((index) => {
+      let newIndex = 0;
+      index === 0 ? (newIndex = reviews.length - 1) : (newIndex = index - 1);
+      return newIndex;
+    });
   }
 
-  function increment() {}
+  function increment() {
+    setIndex((index) => {
+      let newIndex = 0;
+      index === reviews.length - 1 ? (newIndex = 0) : (newIndex = index + 1);
+      return newIndex;
+    });
+  }
 
   return (
     <main>
@@ -32,9 +42,9 @@ const Review = () => {
           <div className="img-container">
             <img className="person-img" src={image} alt={name} />
             {/* ---------- QUOTATION ICON --------- */}
-            <div className="quote-icon">
+            <span className="quote-icon">
               <FaQuoteRight />
-            </div>
+            </span>
           </div>
 
           {/* REVIEW INFO */}
@@ -43,15 +53,15 @@ const Review = () => {
           <p className="info">{text}</p>
 
           {/* PREV & NEXT BUTTONS */}
-          <FaChevronLeft className="prev-btn" onClick={decrement} />
-          <FaChevronRight className="next-btn" onClick={increment} />
+          <div className="button-container">
+            <FaChevronLeft className="prev-btn" onClick={decrement} />
+            <FaChevronRight className="next-btn" onClick={increment} />
+          </div>
 
           {/* RANDOMIZE BUTTON */}
-          <div>
-            <button className="random-btn" onClick={randomizeList}>
-              Randomize
-            </button>
-          </div>
+          <button className="random-btn" onClick={randomizeList}>
+            Randomize
+          </button>
         </article>
       </div>
     </main>
