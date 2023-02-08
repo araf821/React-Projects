@@ -4,13 +4,21 @@ const Buttons = ({ jobs, jobToDisplay, selectedJob }) => {
       {jobs.map((job) => {
         if (selectedJob === job.id) {
           return (
-            <button key={job.id} onClick={() => jobToDisplay(job.id)} className="job-btn active-btn">
+            <button
+              key={job.id}
+              onClick={() => jobToDisplay(job.id)}
+              className="job-btn active-btn"
+            >
               {job.company}
             </button>
           );
         }
         return (
-          <button key={job.id} onClick={() => jobToDisplay(job.id)} className="job-btn">
+          <button
+            key={job.id}
+            onClick={() => jobToDisplay(job.id)}
+            className="job-btn"
+          >
             {job.company}
           </button>
         );

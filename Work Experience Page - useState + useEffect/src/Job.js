@@ -12,9 +12,9 @@ const Job = ({ data, jobToDisplay }) => {
               <h4>{company}</h4>
               <p className="job-date">{dates}</p>
 
-              {duties.map((duty) => {
+              {duties.map((duty, index) => {
                 return (
-                  <section className="job-desc">
+                  <section key={index} className="job-desc">
                     <span className="job-icon">
                       <FaAngleDoubleRight />
                     </span>
@@ -24,6 +24,8 @@ const Job = ({ data, jobToDisplay }) => {
               })}
             </article>
           );
+        } else {
+          return null;
         }
       })}
     </>
