@@ -7,15 +7,17 @@ function App() {
   const [reviews, setReviews] = useState(data);
 
   function next() {
+    let newIndex = 0;
     setIndex(() => {
-      const newIndex = index + 1;
+      index === reviews.length - 1 ? (newIndex = 0) : (newIndex = index + 1);
       return newIndex;
     });
   }
 
   function prev() {
+    let newIndex = 0;
     setIndex(() => {
-      const newIndex = index - 1;
+      index === 0 ? (newIndex = reviews.length - 1) : (newIndex = index - 1);
       return newIndex;
     });
   }
@@ -39,11 +41,11 @@ function App() {
           </span>
 
           {/* PREV and NEXT Buttons */}
-          <button className="prev">
+          <button className="prev" onClick={prev}>
             {" "}
             <FiChevronLeft />{" "}
           </button>
-          <button className="next">
+          <button className="next" onClick={next}>
             {" "}
             <FiChevronRight />{" "}
           </button>
