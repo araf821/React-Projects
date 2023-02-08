@@ -7,12 +7,12 @@ const Menu = ({ items, category }) => {
         if (category === "All" || item.category === category) {
           const { id, title, price, img, desc } = item;
           return (
-            <article className="menu-item">
+            <article className="menu-item" key={id}>
               <img className="photo" src={img} alt={title} />
               <div className="item-info">
                 <header>
                   <h4>{title}</h4>
-                  <p className="price">{price}</p>
+                  <h4 className="price">${parseInt(price)}</h4>
                 </header>
                 <p className="item-text">{desc}</p>
               </div>
