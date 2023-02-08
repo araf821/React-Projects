@@ -1,5 +1,3 @@
-# react-projects-7-slider
+## Review Slider Box or Section Idk
 
-#### IN ACTION
-
-[Gatsby-Airtable Project](https://gatsby-airtable-design-project.netlify.app/)
+All react code and logic implemented by me.
