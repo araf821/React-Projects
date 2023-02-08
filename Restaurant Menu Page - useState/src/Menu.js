@@ -2,19 +2,25 @@ import React from "react";
 
 const Menu = ({ items, category }) => {
   return (
-    <div className="menu-item">
+    <>
       {items.map((item) => {
         if (category === "All" || item.category === category) {
           const { id, title, price, img, desc } = item;
           return (
-            <div>
+            <article className="menu-item">
               <img className="photo" src={img} alt={title} />
-              
-            </div>
-          )
+              <div className="item-info">
+                <header>
+                  <h4>{title}</h4>
+                  <p className="price">{price}</p>
+                </header>
+                <p className="item-text">{desc}</p>
+              </div>
+            </article>
+          );
         }
       })}
-    </div>
+    </>
   );
 };
 
