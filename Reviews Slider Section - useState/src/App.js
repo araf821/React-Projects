@@ -26,30 +26,38 @@ function App() {
     <div className="section">
       <h2 className="title">Reviews</h2>
       <section className="section-center">
-        <article>
-          <img
-            className="person-img"
-            src={reviews[index].image}
-            alt={reviews[index].name}
-          />
-          <h4>{reviews[index].name}</h4>
-          <p className="title">{reviews[index].title}</p>
-          <p className="text">{reviews[index].quote}</p>
-          <span className="icon">
-            {" "}
-            <FaQuoteRight />{" "}
-          </span>
+        {reviews.map((review, revIndex) => {
+          const { id, image, name, title, quote } = review;
+          let position = "nextSlide";
+          if (revIndex === index) position = "activeSlide";
+          if (
+            revIndex === index - 1 ||
+            (index === 0 && revIndex === review.length - 1)
+          )
+            position = "lastSlide";
+          return (
+            <article className={position} key={id}>
+              <img className="person-img" src={image} alt={name} />
+              <h4>{name}</h4>
+              <p className="title">{title}</p>
+              <p className="text">{quote}</p>
+              <span className="icon">
+                {" "}
+                <FaQuoteRight />{" "}
+              </span>
 
-          {/* PREV and NEXT Buttons */}
-          <button className="prev" onClick={prev}>
-            {" "}
-            <FiChevronLeft />{" "}
-          </button>
-          <button className="next" onClick={next}>
-            {" "}
-            <FiChevronRight />{" "}
-          </button>
-        </article>
+              {/* PREV and NEXT Buttons */}
+              <button className="prev" onClick={prev}>
+                {" "}
+                <FiChevronLeft />{" "}
+              </button>
+              <button className="next" onClick={next}>
+                {" "}
+                <FiChevronRight />{" "}
+              </button>
+            </article>
+          );
+        })}
       </section>
     </div>
   );
