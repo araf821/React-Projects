@@ -18,7 +18,7 @@ function App() {
       setSelectedJob(data[0].id);
     } catch (error) {
       setLoading(false);
-      setError(true);
+      // setError(true);
     }
   };
 
@@ -26,7 +26,10 @@ function App() {
     fetchData();
   }, []);
 
-  function jobToDisplay(str) {}
+  function jobToDisplay(id) {
+    const selected = data.filter((job) => job.id === id);
+    setSelectedJob(selected[0].id);
+  }
 
   if (loading) {
     return <h2 className="loading">Loading...</h2>;
@@ -44,11 +47,14 @@ function App() {
         {/* --------JOBS SECTION-------- */}
         <section className="jobs-center">
           {/* ------- BUTTONS -------- */}
-          <Buttons jobs={data} jobToDisplay={jobToDisplay} />
+          <Buttons
+            jobs={data}
+            jobToDisplay={jobToDisplay}
+            selectedJob={selectedJob}
+          />
 
           {/* -------------JOB INFO-------------- */}
           <Job data={data} jobToDisplay={selectedJob} />
-
         </section>
       </div>
     );
