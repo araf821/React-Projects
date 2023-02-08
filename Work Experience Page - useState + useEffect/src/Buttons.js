@@ -1,9 +1,8 @@
-const Buttons = ({ jobs }) => {
+const Buttons = ({ jobs, jobToDisplay }) => {
   return (
     <div className="btn-container">
       {jobs.map((job) => {
-        const { company } = job;
-        return <button className="job-btn">{company}</button>;
+        return <button onClick={() => jobToDisplay(job.id)} className="job-btn">{job.company}</button>;
       })}
     </div>
   );
