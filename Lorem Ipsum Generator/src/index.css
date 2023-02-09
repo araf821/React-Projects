@@ -167,10 +167,12 @@ main {
 Lorem Ipsum
 ===============
 */
+
 h3 {
   text-transform: uppercase;
   color: var(--clr-primary-1);
 }
+
 .lorem-form {
   text-transform: capitalize;
   letter-spacing: var(--spacing);
@@ -180,10 +182,12 @@ h3 {
   justify-content: center;
   align-items: center;
 }
+
 label {
   font-size: 1.25rem;
   color: var(--clr-primary-1);
 }
+
 input {
   padding: 0.25rem 0.5rem;
   width: 4rem;
@@ -192,9 +196,11 @@ input {
   margin: 0 0.5rem;
   font-size: 1.25rem;
 }
+
 button {
   background: var(--clr-primary-10);
 }
+
 .result {
   margin-bottom: 2rem;
 }
