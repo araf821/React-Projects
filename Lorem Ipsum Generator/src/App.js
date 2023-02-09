@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import data from "./data";
 
 function App() {
-  const [paragraphs, setParagraphs] = useState();
+  const [paragraphs, setParagraphs] = useState(0);
+  const [generate, setGenerate] = useState(0);
 
   function handleSubmit(e) {
-    
+    e.preventDefault();
+    setGenerate(paragraphs);
   }
 
   return (
@@ -15,8 +17,9 @@ function App() {
         <label htmlFor="paragraphs">Paragraphs:</label>
         <input
           type="number"
+          min={0}
+          max={8}
           value={paragraphs}
-          defaultValue={1}
           name="paragraphs"
           id="paragraphs"
           onChange={(e) => setParagraphs(e.target.value)}
@@ -25,7 +28,13 @@ function App() {
           Generate
         </button>
       </form>
-      <main></main>
+      <article className="lorem-text">
+        {data.map((paragraph, index) => {
+          if (index < generate) {
+            return <p key={index}>{paragraph}</p>;
+          }
+        })}
+      </article>
     </div>
   );
 }
