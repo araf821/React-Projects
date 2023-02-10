@@ -4,7 +4,7 @@ import List from "./List";
 function App() {
   const [alert, setAlert] = useState(false);
   const [item, setItem] = useState("");
-  const [list, setList] = useState(["bananas", "eggs", "snakes"]);
+  const [list, setList] = useState(["Snakes", "Lattes"]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,6 +31,7 @@ function App() {
           <input
             type="text"
             className="grocery"
+            placeholder="e.g. eggs"
             value={item}
             onChange={(e) => setItem(e.target.value)}
           />
@@ -40,11 +41,15 @@ function App() {
         </div>
       </form>
 
-      <List list={list} deleteItem={deleteItem} />
+      {list.length > 0 ? (
+        <>
+          <List list={list} deleteItem={deleteItem} />
 
-      <button className="clear-btn" onClick={() => setList([])}>
-        Clear Items
-      </button>
+          <button className="clear-btn" onClick={() => setList([])}>
+            Clear Items
+          </button>
+        </>
+      ) : null}
     </section>
   );
 }
