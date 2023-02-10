@@ -5,14 +5,14 @@ import Values from "values.js";
 function App() {
   const [colour, setColour] = useState();
   const [error, setError] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(new Values("orangered").all(10));
 
   function handleSubmit(e) {
     e.preventDefault();
     try {
       let colours = new Values(colour).all(10);
-      setList(colours)
-      setError(false)
+      setList(colours);
+      setError(false);
     } catch (error) {
       setError(true);
     }
@@ -30,12 +30,21 @@ function App() {
             placeholder="#bebebe or skyblue"
             className={`${error ? "error" : null}`}
           />
-          <button type="submit" className="btn">Get Colours!</button>
+          <button type="submit" className="btn">
+            Get Colours!
+          </button>
         </form>
       </section>
       <section className="colors">
         {list.map((colour, index) => {
-          return <SingleColor key={index} {...colour} index={index} hexValue={colour.hex} />
+          return (
+            <SingleColor
+              key={index}
+              {...colour}
+              index={index}
+              hexValue={colour.hex}
+            />
+          );
         })}
       </section>
     </>

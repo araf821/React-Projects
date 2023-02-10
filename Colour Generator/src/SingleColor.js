@@ -6,14 +6,12 @@ const SingleColor = ({ rgb, weight, index, hexValue }) => {
   const rgbValue = rgb.join(",");
   const hex = `#${hexValue}`;
 
-
   useEffect(() => {
     const timeout = setInterval(() => {
-      setAlert(false)
-    }, 1250)
-    return () => clearInterval(timeout)
-  }, [alert])
-  
+      setAlert(false);
+    }, 1250);
+    return () => clearInterval(timeout);
+  }, [alert]);
 
   return (
     <article
@@ -21,7 +19,7 @@ const SingleColor = ({ rgb, weight, index, hexValue }) => {
       style={{ backgroundColor: `rgb(${rgbValue})` }}
       onClick={() => {
         setAlert(true);
-        navigator.clipboard.writeText(hex)
+        navigator.clipboard.writeText(hex);
       }}
     >
       <p className="percent-value">{weight}%</p>
