@@ -16,6 +16,13 @@ function App() {
     setItem("");
   }
 
+  function deleteItem(index) {
+    setList((prevList) => {
+      const newList = prevList.filter((item, itemIndex) => itemIndex !== index);
+      return newList;
+    });
+  }
+
   return (
     <section className="section-center">
       <form className="grocery-form" onSubmit={handleSubmit}>
@@ -33,7 +40,7 @@ function App() {
         </div>
       </form>
 
-      <List list={list} />
+      <List list={list} deleteItem={deleteItem} />
 
       <button className="clear-btn" onClick={() => setList([])}>
         Clear Items
