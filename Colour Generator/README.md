@@ -1,6 +1,6 @@
 ### Colour Generator
 
-View any colour and its shades via its hex code.
+View any colour and many of its shades and easily copy the hex code to the clipboard.
 
 All logic and react code implemented by me :))
 

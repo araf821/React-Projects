@@ -9,6 +9,12 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    try {
+      let colours = new Values(colour).all(10);
+      console.log(colours)
+    } catch (error) {
+      setError(true);
+    }
   }
 
   return (
@@ -20,9 +26,10 @@ function App() {
             type="text"
             value={colour}
             onChange={(e) => setColour(e.target.value)}
-            placeholder="#bebebe"
+            placeholder="#bebebe or skyblue"
+            className={`${error ? "error" : null}`}
           />
-          <button className="btn">Get Colours!</button>
+          <button type="submit" className="btn">Get Colours!</button>
         </form>
       </section>
       <section className="colors"></section>
