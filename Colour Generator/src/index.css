@@ -87,7 +87,7 @@ h2 {
   font-size: 2rem;
 }
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 h4 {
   font-size: 0.875rem;
@@ -159,6 +159,7 @@ input {
   border-top-left-radius: var(--radius);
   border-bottom-left-radius: var(--radius);
 }
+
 .btn {
   background: var(--clr-primary-5);
   padding: 0.5rem 1rem;
@@ -170,18 +171,33 @@ input {
   color: var(--clr-white);
   cursor: pointer;
 }
-@media screen and (max-width: 576px) {
+
+@media screen and (max-width: 690px) {
   .container h3 {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
+
+  .container {
+    flex-direction: column;
+    margin: 1rem auto 0;
+  }
+
   input,
   .btn {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
+
+  .title {
+    width: 100%;
+  }
+
 }
+
 input.error {
   border: 2px solid var(--clr-red-dark);
 }
+
 .colors {
   min-height: calc(100vh - 100px);
   display: grid;

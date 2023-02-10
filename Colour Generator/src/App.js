@@ -21,7 +21,9 @@ function App() {
   return (
     <>
       <section className="container">
-        <h3>Colour Generator</h3>
+        <div className="title">
+          <h3>Colour Generator</h3>
+        </div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
