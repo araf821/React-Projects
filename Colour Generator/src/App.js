@@ -12,6 +12,7 @@ function App() {
     try {
       let colours = new Values(colour).all(10);
       setList(colours)
+      setError(false)
     } catch (error) {
       setError(true);
     }
@@ -34,7 +35,7 @@ function App() {
       </section>
       <section className="colors">
         {list.map((colour, index) => {
-          return <SingleColor key={index} {...colour} index={index} />
+          return <SingleColor key={index} {...colour} index={index} hexValue={colour.hex} />
         })}
       </section>
     </>
