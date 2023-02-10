@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
-import rgbToHex from "./utils";
 
 const SingleColor = ({ rgb, weight, index, hexValue }) => {
   const [alert, setAlert] = useState(false);
 
   const rgbValue = rgb.join(",");
   const hex = `#${hexValue}`;
+
+
+  useEffect(() => {
+    const timeout = setInterval(() => {
+      setAlert(false)
+    }, 1250)
+    return () => clearInterval(timeout)
+  }, [alert])
+  
 
   return (
     <article
