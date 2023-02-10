@@ -11,7 +11,7 @@ function App() {
     e.preventDefault();
     try {
       let colours = new Values(colour).all(10);
-      console.log(colours)
+      setList(colours)
     } catch (error) {
       setError(true);
     }
@@ -32,7 +32,11 @@ function App() {
           <button type="submit" className="btn">Get Colours!</button>
         </form>
       </section>
-      <section className="colors"></section>
+      <section className="colors">
+        {list.map((colour, index) => {
+          return <SingleColor key={index} {...colour} index={index} />
+        })}
+      </section>
     </>
   );
 }
