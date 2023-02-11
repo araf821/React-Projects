@@ -8,10 +8,12 @@ function loadItems() {
 }
 
 function App() {
+  // Handling alerts
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
 
+  // Handling list functionalities
   const [item, setItem] = useState("");
   const [list, setList] = useState(loadItems());
   const [editing, setEditing] = useState(false);
@@ -23,11 +25,13 @@ function App() {
     localStorage.setItem("list", JSON.stringify(list));
   }, [list, handleSubmit]);
 
+  // Below useEffect is used for making the alert disappear after 2000 seconds.
+  // Also ensures that multiple alerts cannot be called at once.
   useEffect(() => {
     const timeout = setInterval(() => {
       setAlert(false);
       setError(false);
-    }, 1250);
+    }, 2000);
     return () => clearInterval(timeout);
   }, [alert]);
 
@@ -73,9 +77,9 @@ function App() {
       const newList = prevList.filter((item, itemIndex) => itemIndex !== index);
       return newList;
     });
-    setError(false);
+    setError(true);
     setAlert(true);
-    setMessage("Successfully deleted item.");
+    setMessage("Item Removed.");
   }
 
   function editItem(item, index) {
