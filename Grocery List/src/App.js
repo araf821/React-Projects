@@ -9,20 +9,36 @@ function loadItems() {
 
 function App() {
   const [alert, setAlert] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
+
   const [item, setItem] = useState("");
   const [list, setList] = useState(loadItems());
   const [editing, setEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(0);
 
   // useEffect that's called every time the list is updated, storing the updated
-  // list in our local storage. 
+  // list in our local storage.
   useEffect(() => {
     localStorage.setItem("list", JSON.stringify(list));
   }, [list, handleSubmit]);
 
+  useEffect(() => {
+    const timeout = setInterval(() => {
+      setAlert(false);
+      setError(false);
+    }, 1250);
+    return () => clearInterval(timeout);
+  }, [alert]);
+
   function handleSubmit(e) {
     e.preventDefault();
-    if (item === "") return;
+    if (item === "") {
+      setAlert(true);
+      setMessage("Please enter a value first.");
+      setError(true);
+      return;
+    }
 
     if (editing) {
       setList(
@@ -36,6 +52,9 @@ function App() {
       );
       setEditing(false);
       setItem("");
+      setError(false);
+      setAlert(true);
+      setMessage("Successfully updated item.");
       return;
     }
 
@@ -44,6 +63,9 @@ function App() {
       return prevList;
     });
     setItem("");
+    setError(false);
+    setAlert(true);
+    setMessage("Successfully added item.");
   }
 
   function deleteItem(index) {
@@ -51,6 +73,9 @@ function App() {
       const newList = prevList.filter((item, itemIndex) => itemIndex !== index);
       return newList;
     });
+    setError(false);
+    setAlert(true);
+    setMessage("Successfully deleted item.");
   }
 
   function editItem(item, index) {
@@ -65,11 +90,11 @@ function App() {
 
   return (
     <section className="section-center">
-
-      {alert 
-      ? null 
-      : null}
-
+      {alert ? (
+        <p className={`alert ${error ? "alert-danger" : "alert-success"}`}>
+          {message}
+        </p>
+      ) : null}
       <form className="grocery-form" onSubmit={handleSubmit}>
         <h3>Grocery List</h3>
         <div className="form-control">
