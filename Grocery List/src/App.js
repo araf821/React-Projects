@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import List from "./List";
 
+function loadItems() {
+  let list = localStorage.getItem("list");
+  if (list) return JSON.parse(localStorage.getItem("list"));
+  else return ["Snakes", "Lattes"];
+}
+
 function App() {
   const [alert, setAlert] = useState(false);
   const [item, setItem] = useState("");
-  const [list, setList] = useState(["Snakes", "Lattes"]);
+  const [list, setList] = useState(loadItems());
   const [editing, setEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(0);
+
+  // useEffect that's called every time the list is updated, storing the updated
+  // list in our local storage. 
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list, handleSubmit]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,6 +65,11 @@ function App() {
 
   return (
     <section className="section-center">
+
+      {alert 
+      ? null 
+      : null}
+
       <form className="grocery-form" onSubmit={handleSubmit}>
         <h3>Grocery List</h3>
         <div className="form-control">
