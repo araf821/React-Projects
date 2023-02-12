@@ -1,5 +1,5 @@
 ### Navbar
 
-A very simple navbar example making use of useState, useRef, useEffect.
+A navbar example making use of useState, useRef, useEffect to deal with menu toggle animations and dynamic height-control of the drop-down menu.
 
-All react code and logic implemented by me.
+Most of the react code and logic implemented by me.
