@@ -5,7 +5,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false);
 
   function openSidebar() {
     setShowSidebar(true);
@@ -15,23 +15,23 @@ const AppProvider = ({ children }) => {
     setShowSidebar(false);
   }
 
-  function openModal() {
-    setShowModal(true);
+  function openSubmenu() {
+    setShowSubmenu(true);
   }
 
-  function closeModal() {
-    setShowModal(false);
+  function closeSubmenu() {
+    setShowSubmenu(false);
   }
 
   return (
     <AppContext.Provider
       value={{
         showSidebar,
-        showModal,
+        showSubmenu,
         openSidebar,
         closeSidebar,
-        openModal,
-        closeModal,
+        openSubmenu,
+        closeSubmenu,
       }}
     >
       {children}
@@ -39,4 +39,8 @@ const AppProvider = ({ children }) => {
   );
 };
 
-export { AppContext, AppProvider };
+export { AppProvider };
+
+export const useGlobalContext = () => {
+  return useContext(AppContext);
+};
