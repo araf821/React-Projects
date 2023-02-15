@@ -2,9 +2,24 @@ import React, { useState, useRef, useEffect } from "react";
 import { useGlobalContext } from "../context";
 
 const Submenu = () => {
-  const { showSubmenu } = useGlobalContext();
+  const { showSubmenu, location } = useGlobalContext();
+  const containerRef = useRef(null);
 
-  return <aside className={`${showSubmenu ? "submenu show" : "show"}`}>asdf</aside>;
+  useEffect(() => {
+    const submenu = containerRef.current;
+    const { center, bottom } = location;
+    submenu.style.left = `${center}px`;
+    submenu.style.top = `${bottom}px`;
+  }, [location]);
+
+  return (
+    <aside
+      ref={containerRef}
+      className={`${showSubmenu ? "submenu show" : "show"}`}
+    >
+      asdf
+    </aside>
+  );
 };
 
 export default Submenu;
