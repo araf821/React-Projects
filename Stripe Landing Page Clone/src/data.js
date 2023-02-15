@@ -27,4 +27,4 @@ const links = [
   },
 ];
 
-export default sublinks;
+export default links;
