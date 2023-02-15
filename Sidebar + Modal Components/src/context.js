@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   function openModal() {
+    console.log("Opening Modal");
     setShowModal(true);
   }
 
@@ -15,6 +16,8 @@ const AppProvider = ({ children }) => {
   }
 
   function openSidebar() {
+    console.log("Opening Sidebar");
+
     setShowSidebar(true);
   }
 
@@ -24,18 +27,22 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={
-        (showModal,
+      value={{
+        showModal,
         showSidebar,
         openModal,
         closeModal,
         openSidebar,
-        closeSidebar)
-      }
+        closeSidebar,
+      }}
     >
       {children}
     </AppContext.Provider>
   );
+};
+
+export const useGlobalContext = () => {
+  return useContext(AppContext);
 };
 
 export { AppContext, AppProvider };
