@@ -19,7 +19,7 @@ const AppProvider = ({ children }) => {
 
   function openSubmenu(text, coordinates) {
     const page = links.find((link) => link.page === text);
-    setPage(page)
+    setPage(page);
 
     setLocation(coordinates);
     setShowSubmenu(true);

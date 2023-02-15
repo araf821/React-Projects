@@ -16,7 +16,7 @@ const Submenu = () => {
   return (
     <aside
       ref={containerRef}
-      className={`${showSubmenu ? "submenu show" : "show"}`}
+      className={`${showSubmenu ? "submenu show" : "submenu"}`}
     >
       <h4>{page.page}</h4>
       <div className="submenu-center col-2">
