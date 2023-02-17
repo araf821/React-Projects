@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import cartItems from "../data";
-import { CLEAR_LIST } from "./actions";
+import { CLEAR_LIST, REMOVE_ITEM } from "./actions";
 import reducer from "./reducer";
 
 const url = "https://course-api.com/react-useReducer-cart-project";
@@ -20,8 +20,12 @@ const AppProvider = ({ children }) => {
     dispatch({ type: CLEAR_LIST });
   };
 
+  const removeItem = (id) => {
+    dispatch({ type: REMOVE_ITEM, id });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, clearCart }}>
+    <AppContext.Provider value={{ ...state, clearCart, removeItem }}>
       {children}
     </AppContext.Provider>
   );
