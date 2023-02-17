@@ -1,0 +1,4 @@
+const CLEAR_LIST = "CLEAR_LIST";
+const REMOVE_ITEM = "REMOVE_ITEM";
+
+export { CLEAR_LIST, REMOVE_ITEM };
