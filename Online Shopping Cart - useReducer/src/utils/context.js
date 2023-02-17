@@ -5,6 +5,7 @@ import {
   REMOVE_ITEM,
   ITEM_INCREASE,
   ITEM_DECREASE,
+  GET_TOTAL,
 } from "./actions";
 import reducer from "./reducer";
 
@@ -36,6 +37,10 @@ const AppProvider = ({ children }) => {
   const itemDecrease = (id) => {
     dispatch({ type: ITEM_DECREASE, id });
   };
+
+  useEffect(() => {
+    dispatch({ type: GET_TOTAL });
+  }, [state.cart]);
 
   return (
     <AppContext.Provider
