@@ -1,7 +1,6 @@
 import React from "react";
 import CartItem from "./CartItem";
 import { useGlobalContext } from "../utils/context";
-import { CLEAR_LIST } from "../utils/actions";
 
 const CartContainer = () => {
   const { cart, total, clearCart } = useGlobalContext();

@@ -1,11 +1,12 @@
 import React, { useContext, useReducer, useEffect } from "react";
-import cartItems from "../data";
 import {
   CLEAR_LIST,
   REMOVE_ITEM,
   ITEM_INCREASE,
   ITEM_DECREASE,
   GET_TOTAL,
+  LOADING,
+  GET_DATA,
 } from "./actions";
 import reducer from "./reducer";
 
@@ -14,13 +15,25 @@ const AppContext = React.createContext();
 
 const initialStates = {
   loading: false,
-  cart: cartItems,
+  cart: [],
   total: 0,
   amount: 0,
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialStates);
+
+  // Fetch the data
+  const fetchItems = async () => {
+    dispatch({ type: LOADING });
+    const res = await fetch(url);
+    const data = await res.json();
+    dispatch({ type: GET_DATA, data });
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   const clearCart = () => {
     dispatch({ type: CLEAR_LIST });

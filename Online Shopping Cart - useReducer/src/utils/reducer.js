@@ -1,8 +1,10 @@
 import {
   CLEAR_LIST,
+  GET_DATA,
   GET_TOTAL,
   ITEM_DECREASE,
   ITEM_INCREASE,
+  LOADING,
   REMOVE_ITEM,
 } from "./actions";
 
@@ -58,6 +60,13 @@ const reducer = (state, action) => {
     return { ...state, total, amount };
   }
 
+  if (action.type === LOADING) {
+    return { ...state, loading: true };
+  }
+
+  if (action.type === GET_DATA) {
+    return { ...state, cart: action.data, loading: false };
+  }
   return state;
 };
 export default reducer;
